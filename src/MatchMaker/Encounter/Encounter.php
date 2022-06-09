@@ -10,7 +10,6 @@
  */
 
 declare(strict_types=1);
-
 namespace App\Domain\MatchMaker\Encounter;
 
 use App\Domain\MatchMaker\Player\PlayerInterface;
@@ -34,7 +33,7 @@ class Encounter
     public function setStatus(string $status): void
     {
         if (!\in_array($status, [self::STATUS_PLAYING, self::STATUS_OVER], true)) {
-            trigger_error(sprintf('$status must one of %s', implode(', ', [self::STATUS_PLAYING, self::STATUS_OVER])), E_USER_ERROR);
+            throw new \BadMethodCallException(sprintf('$status must one of %s', implode(', ', [self::STATUS_PLAYING, self::STATUS_OVER])));
         }
 
         $this->status = $status;
